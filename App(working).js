@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
+//import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import bruschetta from './assets/bruschetta.png';
+//import * as React from 'react';
+//import { Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as SplashScreen from 'expo-splash-screen';
+//import * as SplashScreen from 'expo-splash-screen';
 
-SplashScreen.preventAutoHideAsync();
-setTimeout(SplashScreen.hideAsync, 1000);
+//SplashScreen.preventAutoHideAsync();
+//setTimeout(SplashScreen.hideAsync, 1000);
 
 function HomeScreen({ navigation}) {
   const [servingNumber, setServingNumber] = useState (1);
@@ -14,8 +17,8 @@ function HomeScreen({ navigation}) {
     /* 1. Navigate to the Details route with params 
     but it should navigat to the recipe page with params*/
     navigation.navigate('Details', {
-      servingNumber: servingNumber,
-      
+      itemId: servingNumber,
+      otherParam: 'anything you want here',
     });
   }
   return (
@@ -26,6 +29,7 @@ function HomeScreen({ navigation}) {
       style = {styles.TxtInput}
       placeholder = "Enter the Number of Servings"
       onChangeText={ value => setServingNumber(value)}
+      //defaultValue={servingNumber}
       />
 
     <TouchableOpacity
@@ -38,20 +42,22 @@ function HomeScreen({ navigation}) {
   );
 }
 
-function IngredientScreen({ route }) {
+function DetailsScreen({ route, navigation }) {
   /* 2. Get the param */
-  const { servingNumber } = route.params;
+  const { itemId, otherParam } = route.params;
   return (
     <View style = {styles.details}>
 <Text style = {styles.title}>Bruschetta</Text>
 <Text style = {styles.subtitle}>Ingredients</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 2)} plum tomatoes</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 6)} basil leaves</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 4)} garlic cloves, chopped</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 4)} TB olive oil</Text>
+      <Text style = {styles.directions}>{JSON.stringify(itemId * 2)} plum tomatoes</Text>
+      <Text style = {styles.directions}>{JSON.stringify(itemId * 6)} basil leaves</Text>
+      <Text style = {styles.directions}>{JSON.stringify(itemId * 4)} garlic cloves, chopped</Text>
+      <Text style = {styles.directions}>{JSON.stringify(itemId * 4)} TB olive oil</Text>
 <Text style = {styles.subtitle}>Directions</Text>
 <Text style = {styles.directions}>Combine the ingredients add salt to taste. Top French bread slices with mixture.</Text>
-     
+
+      {/* <Text>otherParam: {JSON.stringify(otherParam)}</Text> */}
+      
     </View>
   );
 }
@@ -68,8 +74,7 @@ export default function App() {
                 headerTintColor: '#fff',
               }}>
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Healthy Recipes"}}/>
-        <Stack.Screen name="Details" component={IngredientScreen
-      } options={{ title: ""}}/>
+        <Stack.Screen name="Details" component={DetailsScreen} options={{ title: ""}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
