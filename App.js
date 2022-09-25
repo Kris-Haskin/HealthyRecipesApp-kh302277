@@ -45,10 +45,10 @@ function IngredientScreen({ route }) {
     <View style = {styles.details}>
 <Text style = {styles.title}>Bruschetta</Text>
 <Text style = {styles.subtitle}>Ingredients</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 2)} plum tomatoes</Text>
+      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 4)} plum tomatoes</Text>
       <Text style = {styles.directions}>{JSON.stringify(servingNumber * 6)} basil leaves</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 4)} garlic cloves, chopped</Text>
-      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 4)} TB olive oil</Text>
+      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 3)} garlic cloves, chopped</Text>
+      <Text style = {styles.directions}>{JSON.stringify(servingNumber * 3)} TB olive oil</Text>
 <Text style = {styles.subtitle}>Directions</Text>
 <Text style = {styles.directions}>Combine the ingredients add salt to taste. Top French bread slices with mixture.</Text>
      
